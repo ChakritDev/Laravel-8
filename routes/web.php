@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // http://localhost/user/5
 Route::get('user/{id?}', function ($id="") {
@@ -38,5 +39,22 @@ Route::get('product/{id}/{name}',function($id,$name){
 Route::get('guest/showroom/data/{name?}',function($name){
     return 'Hello '.$name;
 })->name('profile');
+
+
+// การส่งเข้า Controller
+// Route::get('/','App\http\Controllers\HomeController@home');
+// Route::get('service','App\http\Controllers\HomeController@service');
+// Route::get('contact','App\http\Controllers\HomeController@contact');
+
+// แบบเก่า
+// Route::get('/','HomeController@home');
+// Route::get('service','HomeController@service');
+// Route::get('contact','HomeController@contact');
+
+// แบบใหม่  use App\Http\Controllers\HomeController;
+Route::get('/',[HomeController::class,'home']);
+Route::get('service',[HomeController::class,'service']);
+Route::get('contact',[HomeController::class,'contact']);
+
 
 
